@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="float-mode">
+    <div class="page-transition"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="particles" id="particles"></div>
+    <div class="glass-card">
+        <h1 class="shimmer-text">Counting Down...</h1>
+        <div id="timer" style="display: flex; justify-content: space-around; margin: 20px 0; font-size: 1.5rem;">
+            <div><span id="days">00</span><br><small>Days</small></div>
+            <div><span id="hours">00</span><br><small>Hrs</small></div>
+            <div><span id="mins">00</span><br><small>Mins</small></div>
+            <div><span id="secs">00</span><br><small>Secs</small></div>
+        </div>
+        <button id="nextBtn" style="display:none;" onclick="location.href='birthday.html'">It's Time! Enter</button>
+    </div>
+
+    <script> /* index.html specific script */
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- APNA DATE YAHA DALO (YEAR, MONTH, DAY) ---
+            const targetYear = 2026;
+            const targetMonth = 8; // August
+            const targetDay = 6;
+            // ---------------------------------------------
+
+            // JavaScript mein month 0 se start hota hai (0 = Jan), isliye month - 1 use kiya hai.
+            const target = new Date(targetYear, targetMonth - 1, targetDay).getTime();
+
+            const timerInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const diff = target - now;
+
+                if (diff <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('days').innerText = '00';
+                    document.getElementById('hours').innerText = '00';
+                    document.getElementById('mins').innerText = '00';
+                    document.getElementById('secs').innerText = '00';
+                    document.querySelector('h1').innerText = "It's Time!";
+                    document.getElementById('nextBtn').style.display = 'inline-block';
+                    document.body.addEventListener('click', () => {
+                        window.location.href = 'birthday.html';
+                    });
+                    return;
+                }
+
+                document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            }, 1000);
+        });
+
+        // Particle creation is now handled by script.js
+        // const particleContainer = document.getElementById('particles');
+        // for (let i = 0; i < 20; i++) {
+        //     const p = document.createElement('div');
+        //     p.classList.add('particle');
+        //     const size = Math.random() * 5 + 2;
+        //     p.style.width = `${size}px`;
+        //     p.style.height = `${size}px`;
+        //     p.style.left = `${Math.random() * 100}vw`;
+        //     p.style.animationDuration = `${Math.random() * 10 + 10}s`;
+        //     p.style.animationDelay = `${Math.random() * 5}s`;
+        //     particleContainer.appendChild(p);
+        // }
+    </script>
+</body>
+</html>

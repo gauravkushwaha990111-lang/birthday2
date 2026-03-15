@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Wishes</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="float-mode">
+    <div class="page-transition"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="particles" id="particles"></div>
+    <div class="glass-card">
+        <h1 class="shimmer-text">Special Wishes</h1>
+        <p id="wish-text" style="min-height: 80px; transition: opacity 0.5s;">Loading a special wish for you...</p>
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <button id="newWishBtn">Another Wish</button>
+            <button onclick="window.location.href='edit.html'">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const wishes = [
+            "May your year be filled with laughter, success, and all the aesthetic vibes you deserve!",
+            "You are a gem! Never stop being yourself.",
+            "Wishing you a day as special as you are!",
+            "Happy birthday! I hope all your birthday wishes and dreams come true.",
+            "Another year older, another year wiser. You're doing amazing!",
+            "Sending you a universe of joy on your special day.",
+            "May your life be as bright and beautiful as a field of sunflowers.",
+            "Cheers to you for another trip around the sun!"
+        ];
+
+        function showRandomWish() {
+            const wishElement = document.getElementById('wish-text');
+            wishElement.style.opacity = 0;
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * wishes.length);
+                wishElement.innerText = `"${wishes[randomIndex]}"`;
+                wishElement.style.opacity = 1;
+            }, 300);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showRandomWish();
+            document.getElementById('newWishBtn').addEventListener('click', showRandomWish);
+        });
+    </script>
+</body>
+</html>

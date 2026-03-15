@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="float-mode">
+    <div class="page-transition"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="particles" id="particles"></div>
+    <div class="glass-card">
+        <h1 class="shimmer-text">Nothing</h1>
+        <div style="margin-bottom: 20px; border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <video width="100%" controls autoplay muted playsinline style="display: block; border-radius: 15px;">
+                <source src="memory.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <p style="font-size: 0.9rem; margin-bottom: 20px; opacity: 0.8;"></p>
+        <button onclick="window.location.href='cake.html'">Time for Cake!</button>
+    </div>
+    <script> /* edit.html specific script */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Particle creation is now handled by script.js
+            // const particleContainer = document.getElementById('particles');
+            // for (let i = 0; i < 20; i++) {
+            //     const p = document.createElement('div');
+            //     p.classList.add('particle');
+            //     const size = Math.random() * 5 + 2;
+            //     p.style.width = `${size}px`;
+            //     p.style.height = `${size}px`;
+            //     p.style.left = `${Math.random() * 100}vw`;
+            //     p.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            //     p.style.animationDelay = `${Math.random() * 5}s`;
+            //     particleContainer.appendChild(p);
+            // }
+        });
+    </script>
+</body>
+</html>
